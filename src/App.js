@@ -1,7 +1,8 @@
-import "./App.css";
+import React from "react";
+import Login from "./pages/Login";
 
 function App() {
-  return <h1>Hello here</h1>;
+  return <Login />;
 }
 
 export default App;
