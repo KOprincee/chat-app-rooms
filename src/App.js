@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { io } from "socket.io-client";
 
-const socket = io.connect("http://localhost:8090");
+const socket = io.connect("https://app-chat-rooms.onrender.com");
 
 const router = createBrowserRouter([
   {
