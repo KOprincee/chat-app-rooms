@@ -19,12 +19,17 @@ function stringToColor(string) {
 }
 
 export const stringAvatar = (name) => {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-    },
-    children: `${name.split(" ")[0][0].toUpperCase()}${name
-      .split(" ")[1][0]
-      .toUpperCase()}`,
-  };
+  if (name) {
+    const bgColor = stringToColor(name);
+    let children;
+    if (name.includes(" ")) {
+      children = `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`;
+    } else {
+      children = name[0];
+    }
+    return {
+      sx: { backgroundColor: bgColor },
+      children: children,
+    };
+  }
 };
