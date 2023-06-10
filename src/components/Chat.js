@@ -7,7 +7,6 @@ import ChatHeader from "./ChatHeader";
 
 const Chat = () => {
   const params = useParams();
-  console.log(params);
   return (
     <Container maxWidth="100%" sx={{ my: 0 }}>
       <Box

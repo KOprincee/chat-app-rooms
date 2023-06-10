@@ -8,7 +8,6 @@ const MessageBox = (props) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setMessage("");
-      console.log("do validate");
     }
   };
 
