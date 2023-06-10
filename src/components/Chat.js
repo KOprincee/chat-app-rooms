@@ -14,6 +14,7 @@ const Chat = ({ socket }) => {
   //Listening to socket and adding message in context
   socket.off("message").on("message", (data) => {
     const datafromServer = {
+      userName: data.username,
       id: uuidv4(),
       data: data.text,
       align: data.align,

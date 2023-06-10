@@ -3,7 +3,7 @@ import { AppContext } from "../utils/context";
 import MessageItem from "./MessageItem";
 
 const MessageList = ({ socket }) => {
-  const { messages, userName } = useContext(AppContext);
+  const { messages } = useContext(AppContext);
   const [typing, setTyping] = useState({});
   const messagesEndRef = useRef(null);
 
@@ -20,12 +20,12 @@ const MessageList = ({ socket }) => {
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }, [typing]);
-
+  console.log(messages);
   return (
     <div className="message-list">
       {messages.map((msg) => (
         <MessageItem
-          userName={userName}
+          userName={msg.userName}
           key={msg.id}
           message={msg.data}
           align={msg.align}
