@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../utils/context";
+import { v4 as uuidv4 } from "uuid";
+
 import TextField from "@mui/material/TextField";
 import ChatBubble from "./ChatBubble";
 
 const MessageBox = (props) => {
+  const { dispatch } = useContext(AppContext);
   const [message, setMessage] = useState("");
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
+      const enteredMsg = {
+        id: uuidv4(),
+        data: message,
+        align: "right",
+      };
+
       setMessage("");
+
+      dispatch({
+        type: "ADD_MSG",
+        payload: enteredMsg,
+      });
     }
   };
 

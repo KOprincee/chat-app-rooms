@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../utils/context";
+import { v4 as uuidv4 } from "uuid";
+
 import TextField from "@mui/material/TextField";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { dispatch } = useContext(AppContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
     var userName = document.getElementById("userName").value;
     var roomName = document.getElementById("roomName").value;
+
+    const enteredMsg = {
+      userName: userName,
+      roomName: roomName,
+      messages: [
+        {
+          id: uuidv4(),
+          data: `Welcome ${userName}`,
+          align: "center",
+        },
+      ],
+    };
+
+    dispatch({
+      type: "ADD_USER_DETAILS",
+      payload: enteredMsg,
+    });
 
     navigate(`/chat/${roomName}/${userName}`);
   };

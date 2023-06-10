@@ -21,9 +21,11 @@ export const stringAvatar = (name) => {
     const bgColor = stringToColor(name);
     let children;
     if (name.includes(" ")) {
-      children = `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`;
+      children = `${name.split(" ")[0][0].toUpperCase()}${name
+        .split(" ")[1][0]
+        .toUpperCase()}`;
     } else {
-      children = name[0];
+      children = name[0].toUpperCase();
     }
     return {
       sx: { backgroundColor: bgColor },
