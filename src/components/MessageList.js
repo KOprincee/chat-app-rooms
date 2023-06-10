@@ -20,7 +20,6 @@ const MessageList = ({ socket }) => {
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }, [typing]);
-  console.log(messages);
   return (
     <div className="message-list">
       {messages.map((msg) => (
