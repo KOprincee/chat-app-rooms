@@ -28,6 +28,7 @@ export const AppProvider = (props) => {
   return (
     <AppContext.Provider
       value={{
+        userName: state.userName,
         messages: state.messages,
         dispatch,
       }}
