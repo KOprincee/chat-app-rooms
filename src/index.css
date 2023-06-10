@@ -1,0 +1,30 @@
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-radius: 0.5em;
+  margin-bottom: 15px;
+  border: 1px solid;
+  border-radius: 1em;
+  border-color: #586171;
+}
+
+.message-list {
+  height: 66vh;
+  overflow: auto;
+}
+
+.message-send-container {
+  display: flex;
+  align-items: initial;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  justify-content: space-between;
+}

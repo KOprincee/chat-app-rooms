@@ -1,7 +1,8 @@
 import React from "react";
+import Chat from "../components/Chat";
 
 const ChatRoom = () => {
-  return <h1>Build In Progress...</h1>;
+  return <Chat />;
 };
 
 export default ChatRoom;

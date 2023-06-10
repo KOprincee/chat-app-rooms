@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Login />,
   },
-  { path: "/chat/:userName/:roomName", element: <ChatRoom /> },
+  { path: "/chat/:roomName/:userName", element: <ChatRoom /> },
 ]);
 
 function App() {
