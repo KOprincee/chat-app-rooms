@@ -55,3 +55,12 @@ body {
   display: flex;
   margin: 5px 0;
 }
+
+.message-body {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 1em;
+  border-color: #586171;
+}
