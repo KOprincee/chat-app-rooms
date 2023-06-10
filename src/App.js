@@ -7,13 +7,16 @@ import { AppProvider } from "./utils/context";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { io } from "socket.io-client";
+
+const socket = io.connect("http://localhost:8090");
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    element: <Login socket={socket} />,
   },
-  { path: "/chat/:roomName/:userName", element: <ChatRoom /> },
+  { path: "/chat/:roomName/:userName", element: <ChatRoom socket={socket} /> },
 ]);
 
 function App() {

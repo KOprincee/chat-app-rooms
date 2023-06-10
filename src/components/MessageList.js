@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { AppContext } from "../utils/context";
 import MessageItem from "./MessageItem";
 
-const MessageList = () => {
+const MessageList = ({ socket }) => {
   const { messages, userName } = useContext(AppContext);
+  const [typing, setTyping] = useState({});
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTyping("");
+    }, 2000);
+  }, [typing]);
+
+  socket.off("typing").on("typing", (data) => {
+    setTyping(data);
+  });
+
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [typing]);
 
   return (
     <div className="message-list">
@@ -15,6 +31,14 @@ const MessageList = () => {
           align={msg.align}
         />
       ))}
+      {typing && (
+        <MessageItem
+          userName={typing.username}
+          align={typing.align}
+          message={typing.text}
+        />
+      )}
+      <div ref={messagesEndRef} />
     </div>
   );
 };

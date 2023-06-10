@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-const Login = () => {
+const Login = ({ socket }) => {
   const navigate = useNavigate();
   const { dispatch } = useContext(AppContext);
 
@@ -18,6 +18,8 @@ const Login = () => {
     e.preventDefault();
     var userName = document.getElementById("userName").value;
     var roomName = document.getElementById("roomName").value;
+
+    socket.emit("joinRoom", { userName, roomName });
 
     const enteredMsg = {
       userName: userName,

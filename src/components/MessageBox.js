@@ -5,11 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 import TextField from "@mui/material/TextField";
 import ChatBubble from "./ChatBubble";
 
-const MessageBox = (props) => {
+const MessageBox = ({ socket, userName }) => {
   const { dispatch } = useContext(AppContext);
   const [message, setMessage] = useState("");
 
   const handleKeyDown = (e) => {
+    socket.emit("typing");
+
     if (e.key === "Enter") {
       const enteredMsg = {
         id: uuidv4(),
@@ -17,6 +19,7 @@ const MessageBox = (props) => {
         align: "right",
       };
 
+      socket.emit("chat", message);
       setMessage("");
 
       dispatch({
@@ -28,7 +31,7 @@ const MessageBox = (props) => {
 
   return (
     <div className="message-send-container">
-      <ChatBubble userName={props.userName} />
+      <ChatBubble userName={userName} />
       <TextField
         margin="normal"
         fullWidth

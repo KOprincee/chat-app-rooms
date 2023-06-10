@@ -1,11 +1,30 @@
+import React, { useContext } from "react";
 import { Box, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { AppContext } from "../utils/context";
+import { v4 as uuidv4 } from "uuid";
 
 import MessageBox from "./MessageBox";
 import MessageList from "./MessageList";
 import ChatHeader from "./ChatHeader";
 
-const Chat = () => {
+const Chat = ({ socket }) => {
+  const { dispatch } = useContext(AppContext);
+
+  //Listening to socket and adding message in context
+  socket.off("message").on("message", (data) => {
+    const datafromServer = {
+      id: uuidv4(),
+      data: data.text,
+      align: data.align,
+    };
+
+    dispatch({
+      type: "ADD_MSG",
+      payload: datafromServer,
+    });
+  });
+
   const params = useParams();
   return (
     <Container maxWidth="100%" sx={{ my: 0 }}>
@@ -21,8 +40,8 @@ const Chat = () => {
       >
         <div className="chat-room">
           <ChatHeader userName={params.userName} roomName={params.roomName} />
-          <MessageList />
-          <MessageBox userName={params.userName} />
+          <MessageList socket={socket} />
+          <MessageBox userName={params.userName} socket={socket} />
         </div>
       </Box>
     </Container>
